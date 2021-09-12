@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/may_nav"
+    app:startDestination="@id/recipeFrag">
+
+    <fragment
+        android:id="@+id/recipeFrag"
+        android:name="com.homecookinghelper.homecooked.ui.fragments.recipes.RecipeFrag"
+        android:label="@string/recipe_title"
+        tools:layout="@layout/fragment_recipe" />
+    <fragment
+        android:id="@+id/favourite"
+        android:name="com.homecookinghelper.homecooked.ui.fragments.favourite.favourite"
+        android:label="@string/favourite_title"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/foodFact"
+        android:name="com.homecookinghelper.homecooked.ui.fragments.foodfact.foodFact"
+        android:label="@string/food_fact_title"
+        tools:layout="@layout/fragment_food_fact" />
+</navigation>
