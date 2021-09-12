@@ -4,10 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.homecookinghelper.homecooked.data.Repository
 import com.homecookinghelper.homecooked.models.FoodRecipe
 import com.homecookinghelper.homecooked.util.NetworkResult
@@ -21,7 +18,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: Repository,
     application: Application
-) : AndroidViewModel(application) {
+) : AndroidViewModel(application),LifecycleObserver {
 
     val recipesResponse:MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
