@@ -5,10 +5,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import coil.load
 import com.homecookinghelper.homecooked.R
 
 class RecipeRowBinding {
     companion object{
+
+        @BindingAdapter("loadImage")
+        @JvmStatic
+        fun loadImage(imageView: ImageView, url:String){
+            imageView.load(url){
+                crossfade(600)
+            }
+        }
 
         @BindingAdapter("setNumberOfLikes")
         @JvmStatic

@@ -1,4 +1,4 @@
-package com.homecookinghelper.homecooked
+package com.homecookinghelper.homecooked.viewmodels
 
 import android.app.Application
 import android.content.Context
@@ -7,7 +7,6 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.homecookinghelper.homecooked.data.Repository
 import com.homecookinghelper.homecooked.models.FoodRecipe
-import com.homecookinghelper.homecooked.ui.fragments.foodfact.foodFact
 import com.homecookinghelper.homecooked.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,7 +22,7 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application),LifecycleObserver {
 
-    private val recipesResponse:MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+     val recipesResponse:MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String,String>)= viewModelScope.launch {
         getRecipesSafeCall(queries)

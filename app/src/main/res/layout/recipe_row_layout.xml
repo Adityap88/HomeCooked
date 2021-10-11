@@ -40,9 +40,10 @@
 
                 <ImageView
                     android:id="@+id/ivRecipe"
-                    android:layout_width="150dp"
+                    android:layout_width="170dp"
                     android:layout_height="0dp"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
+                    loadImage="@{result.image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -53,13 +54,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="15dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/cousine"
+                    android:fontFamily="he"
                     android:maxLines="2"
                     android:text="@{result.title}"
-                    android:textAlignment="center"
+                    android:textAlignment="viewStart"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,18 +75,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/molengo"
+                    android:fontFamily="sans-serif"
                     android:maxLines="3"
                     android:text="@{result.summary}"
-                    android:textAlignment="center"
-                    android:textSize="12sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="@+id/tvTitle"
                     app:layout_constraintStart_toStartOf="@+id/tvTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
                 <ImageView
                     android:id="@+id/ivLikes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="68dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -97,11 +99,11 @@
 
                 <TextView
                     android:id="@+id/tvLikes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:text="100"
                     setNumberOfLikes="@{result.aggregateLikes}"
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="100"
                     android:textAlignment="center"
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@+id/tvTitle"
@@ -109,7 +111,7 @@
 
                 <ImageView
                     android:id="@+id/ivClock"
-                    android:layout_width="wrap_content"
+                    android:layout_width="69dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@+id/tvClock"
                     app:layout_constraintStart_toStartOf="@+id/tvClock"
@@ -119,11 +121,11 @@
 
                 <TextView
                     android:id="@+id/tvClock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="100"
                     setNumberOfMinutes="@{result.readyInMinutes}"
+                    android:layout_width="69dp"
+                    android:layout_height="wrap_content"
+
+                    android:text="100"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
                     app:layout_constraintStart_toEndOf="@+id/tvLikes"
@@ -131,20 +133,20 @@
 
                 <ImageView
                     android:id="@+id/ivVegan"
-                    android:layout_width="wrap_content"
+                    applyVeganColor="@{result.vegan}"
+                    android:layout_width="69dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@+id/tvVegan"
-                    applyVeganColor="@{result.vegan}"
                     app:layout_constraintStart_toStartOf="@+id/tvVegan"
                     app:layout_constraintTop_toTopOf="@+id/ivClock"
                     app:srcCompat="@drawable/ic_leaf" />
 
                 <TextView
                     android:id="@+id/tvVegan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
                     applyVeganColor="@{result.vegan}"
+                    android:layout_width="69dp"
+                    android:layout_height="wrap_content"
+
                     android:text="Vegan"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/tvClock"
