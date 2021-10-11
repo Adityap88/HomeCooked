@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/layout/activity_main.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/layout/fragment_favourite.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/layout/fragment_recipe.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/layout/placeholder_row_layout.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/layout/recipe_row_layout.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/adity/AndroidStudioProjects/HomeCooked/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20462962962962963" />
       </map>
     </option>

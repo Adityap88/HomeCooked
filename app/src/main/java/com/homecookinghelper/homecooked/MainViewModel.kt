@@ -7,11 +7,14 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.homecookinghelper.homecooked.data.Repository
 import com.homecookinghelper.homecooked.models.FoodRecipe
+import com.homecookinghelper.homecooked.ui.fragments.foodfact.foodFact
 import com.homecookinghelper.homecooked.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.Response
+
 import java.lang.Exception
-import java.net.ContentHandler
+
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,22 +23,46 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application),LifecycleObserver {
 
-    val recipesResponse:MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    private val recipesResponse:MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String,String>)= viewModelScope.launch {
         getRecipesSafeCall(queries)
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
+
+        recipesResponse.value=NetworkResult.Loading()
         if(hasInternetConnection()){
             try {
                 val response= repository.remote.getRecipes(queries)
+                recipesResponse.value=handleResponse(response)
             }catch (e:Exception){
 
             }
         }else{
             recipesResponse.value=NetworkResult.Error("No Internet Connection")
         }
+    }
+
+    private fun handleResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
+            when {
+                response.message().toString().contains("timeout")->{
+                    return NetworkResult.Error("Network Error")
+                }
+                response.code()==402->{
+                    return NetworkResult.Error("API key Limited")
+                }
+                response.body()!!.results.isNullOrEmpty()->{
+                    return NetworkResult.Error("Recipes not found")
+                }
+                response.isSuccessful->{
+                    val foodRecipes=response.body()
+                    return NetworkResult.Success(foodRecipes!!)
+                }
+                else ->{
+                    return NetworkResult.Error(response.message())
+                }
+            }
     }
 
     private fun hasInternetConnection(): Boolean {
