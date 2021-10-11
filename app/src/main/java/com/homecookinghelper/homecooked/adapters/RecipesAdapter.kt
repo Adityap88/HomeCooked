@@ -12,7 +12,7 @@ import com.homecookinghelper.homecooked.util.RecipesDiffUtil
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
 
-    private var recipe = emptyList<Result>()
+    private var recipes = emptyList<Result>()
 
     class MyViewHolder(private val binding: RecipeRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,18 +35,18 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentResult = recipe[position]
+        val currentResult = recipes[position]
         holder.bind(currentResult)
 
     }
 
     override fun getItemCount(): Int {
-        return recipe.size
+        return recipes.size
     }
     fun setData(newData:FoodRecipe){
-        val recipeDiffUitl=RecipesDiffUtil(recipe,newData.results)
+        val recipeDiffUitl=RecipesDiffUtil(recipes,newData.results)
         val diffUtilResult= DiffUtil.calculateDiff(recipeDiffUitl)
-        recipe=newData.results
+        recipes=newData.results
         diffUtilResult.dispatchUpdatesTo(this)
     }
 }
