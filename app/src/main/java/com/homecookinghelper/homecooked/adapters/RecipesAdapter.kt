@@ -2,11 +2,13 @@ package com.homecookinghelper.homecooked.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import com.homecookinghelper.homecooked.databinding.RecipeRowLayoutBinding
 import com.homecookinghelper.homecooked.models.FoodRecipe
 import com.homecookinghelper.homecooked.models.Result
+import com.homecookinghelper.homecooked.util.RecipesDiffUtil
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
 
@@ -42,7 +44,9 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
         return recipe.size
     }
     fun setData(newData:FoodRecipe){
+        val recipeDiffUitl=RecipesDiffUtil(recipe,newData.results)
+        val diffUtilResult= DiffUtil.calculateDiff(recipeDiffUitl)
         recipe=newData.results
-        notifyDataSetChanged()
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 }
